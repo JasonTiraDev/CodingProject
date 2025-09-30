@@ -1,16 +1,186 @@
-# 🎮 Mini Survivors: 3-Day Game Development Course
+# 🎮 Mini Survivors - Educational Game Development Course
 
-## Course Overview
-This is a 3-day programming course designed for students aged 14-16, teaching game development fundamentals using p5.js and JavaScript. Students will build a complete survival game from scratch, learning essential programming concepts through hands-on coding.
+A progressive 6-day course teaching game development fundamentals to students aged 14-16 using p5.js.
 
-## 🎯 Learning Objectives
+## 🎯 Course Overview
 
-### Overall Course Goals:
-- Understand fundamental programming concepts (variables, functions, loops, arrays)
-- Learn basic game development principles
-- Experience iterative development and building complexity
-- Develop problem-solving and debugging skills
-- Create a complete, playable game
+This course transforms a simple survival game concept into a comprehensive learning experience. Students build increasingly complex games over 6 days, learning fundamental programming concepts while creating something fun and engaging.
+
+### Core Course (3 Days)
+- **Day 1**: Basic game loop, player movement, and drawing
+- **Day 2**: Enemies, bullets, collision detection, and game states  
+- **Day 3**: Complete game with weapons, power-ups, and progression
+
+### Bonus Lessons (Advanced Students)
+- **Day 4**: Visual polish with sprites and particle effects
+- **Day 5**: Audio integration with sound effects and music
+- **Day 6**: Advanced mechanics with boss battles and upgrade systems
+
+## 📁 Project Structure
+
+```
+CodingProject/
+├── day1-basics/
+│   ├── starter.js       # Guided lesson framework
+│   ├── completed.js     # Reference solution
+│   └── README.md        # Day 1 instructions
+├── day2-combat/
+│   ├── starter.js       # Guided lesson framework
+│   ├── completed.js     # Reference solution
+│   └── README.md        # Day 2 instructions
+├── day3-complete/
+│   ├── starter.js       # Guided lesson framework
+│   ├── completed.js     # Reference solution
+│   └── README.md        # Day 3 instructions
+├── bonus-day4-visuals/
+│   ├── starter.js       # Guided lesson framework
+│   ├── completed.js     # Reference solution
+│   └── README.md        # Bonus Day 4 instructions
+├── bonus-day5-audio/
+│   ├── starter.js       # Guided lesson framework
+│   ├── completed.js     # Reference solution
+│   └── README.md        # Bonus Day 5 instructions
+├── bonus-day6-advanced/
+│   ├── starter.js       # Guided lesson framework
+│   ├── completed.js     # Reference solution
+│   └── README.md        # Bonus Day 6 instructions
+├── teacher-resources/
+│   └── README.md        # Teaching guide & resources
+└── README.md            # This file
+```
+
+## 🚀 Quick Start
+
+Each day builds upon the previous, so start with Day 1:
+
+### For Students:
+1. Navigate to the `day1-basics/` folder
+2. Open [p5.js Web Editor](https://editor.p5js.org/)
+3. Copy the code from `starter.js` (not completed.js!)
+4. Follow the guided instructions in the comments
+5. Build the game step-by-step using the TODO comments
+6. Test frequently and use `completed.js` only for reference
+
+### For Teachers:
+- Each folder has `starter.js` (student template) and `completed.js` (reference solution)
+- Students should work from starter files and build the features themselves
+- Use completed files for troubleshooting and demonstration
+- Each folder's README has detailed lesson plans and teaching notes
+
+## 📚 What Students Learn
+
+### Programming Fundamentals
+- Variables, functions, and objects
+- Arrays and loops
+- Conditional statements
+- Event handling
+
+### Game Development Concepts  
+- Game loops and state management
+- Collision detection algorithms
+- Player input and movement
+- Enemy AI and spawning systems
+- Progression and scoring
+
+### Problem Solving Skills
+- Breaking down complex problems
+- Debugging and testing code
+- Iterative development
+- Creative thinking and design
+
+## 🎮 Game Features by Day
+
+### Day 1: Foundation
+- Player-controlled spaceship
+- Smooth keyboard movement
+- Boundary collision detection
+- Start screen and game states
+- **Learning Focus**: Game loops, coordinates, user input
+
+### Day 2: Combat System
+- Automatic bullet firing
+- Enemy spawning and movement
+- Collision detection between bullets and enemies
+- Score tracking and game over conditions
+- **Learning Focus**: Arrays, object interaction, game states
+
+### Day 3: Complete Game
+- Multiple weapon types (spread shot, laser, orbital)
+- XP and leveling system
+- Power-ups and weapon switching
+- Increasing difficulty over time
+- Health system and damage feedback
+- **Learning Focus**: Complex systems, game balance, progression
+
+### Bonus Day 4: Visual Effects
+- Sprite animations and image loading
+- Particle systems for explosions
+- Screen shake and visual feedback
+- Animated backgrounds
+- **Learning Focus**: Graphics programming, user experience
+
+### Bonus Day 5: Audio
+- Sound effect triggers
+- Background music loops
+- Audio-reactive visual elements
+- Volume controls
+- **Learning Focus**: Multimedia programming, audio integration
+
+### Bonus Day 6: Advanced Systems
+- Boss enemies with complex AI patterns
+- Player upgrade system with meaningful choices
+- Multiple game modes (Survival, Wave, Boss Rush)
+- Health/armor system with invulnerability frames
+- High score tracking
+- **Learning Focus**: Advanced AI, system design, game modes
+
+## 🛠️ Technical Requirements
+
+- **Platform**: Any modern web browser
+- **Framework**: p5.js (included via CDN)
+- **Skills**: Basic understanding of variables and functions helpful but not required
+- **Time**: 2-4 hours per day depending on student pace and discussion
+
+## 👩‍🏫 For Teachers
+
+See the `teacher-resources/` folder for comprehensive teaching guides, including:
+- Detailed lesson plans and timing
+- Common challenges and solutions
+- Assessment strategies
+- Extension activities
+- Setup requirements
+
+### Teaching Approach
+1. **Demo First**: Show the working game before explaining code
+2. **Incremental**: Add one feature at a time with testing
+3. **Interactive**: Encourage experimentation and modification
+4. **Collaborative**: Support pair programming and peer learning
+
+## 🎯 Learning Outcomes
+
+By the end of this course, students will:
+- Understand fundamental programming concepts
+- Know how to structure and organize code
+- Be able to debug simple programming problems
+- Have experience with game development workflows
+- Feel confident experimenting with code
+- Understand how complex systems are built from simple parts
+
+## 🌟 Extension Ideas
+
+- Create original games using learned concepts
+- Explore other programming languages and frameworks
+- Design levels or characters for existing games
+- Research game development careers and pathways
+- Share creations with friends and family
+
+## 🤝 Contributing
+
+This educational resource is designed to be adapted and improved. Suggestions for better explanations, additional features, or alternative approaches are welcome!
+
+## 📄 License
+
+This educational content is provided freely for classroom and educational use.
 
 ## 📋 Prerequisites
 - Basic understanding of what programming is (no prior coding experience required)
