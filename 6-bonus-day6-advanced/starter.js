@@ -1,57 +1,102 @@
-// 🎮 Bonus Day 6: Advanced Mechanics - Mini Survivors
-// Today we'll create the ultimate survival experience with boss battles!
-// Starting with working Day 5 code, then adding advanced systems
+// 🎮 Bonus Day 6: Advanced Game Mechanics - Mini Survivors
+// Starting with your complete Day 5 audio+visual masterpiece, now let's create the ULTIMATE game!
+// Today we'll build boss battles, upgrades, and multiple game modes - this is your portfolio project!
 
 // ====================================
 // LESSON GOALS:
-// - Create boss enemies with complex AI patterns
-// - Build a comprehensive upgrade system
-// - Add multiple game modes for variety
-// - Implement advanced combat mechanics
-// - Create a complete game experience
+// - Create epic boss enemies with unique AI patterns and abilities
+// - Build a comprehensive player upgrade system with meaningful choices
+// - Add multiple game modes (Survival, Wave Mode, Boss Rush)
+// - Implement advanced combat mechanics (armor, critical hits, invulnerability frames)
+// - Create a complete, professional-quality game experience
+// - Build something worthy of your portfolio and to show friends!
 // ====================================
 
-// Starting with Day 5's working code (including all audio and visual effects)
-let player;
-let gameState = "start";
-let bullets = [];
-let enemies = [];
-let powerUps = [];
-let score = 0;
-let playerXP = 0;
-let playerLevel = 1;
-let playerHealth = 60;
-let maxHealth = 60;
-let currentWeapon = "basic";
-let difficultyTimer = 0;
-let explosionParticles = [];
-let screenShake = 0;
-let animationFrame = 0;
-let soundEnabled = true;
-let musicVolume = 0.5;
-let sfxVolume = 0.7;
+// STEP 1: All your working Day 5 variables (complete audio+visual game foundation!)
+let player;                    // Player object with rotation, visuals, audio
+let gameState = "start";       // Current game screen
+let bullets = [];              // Array of all bullets with trails and audio
+let enemies = [];              // Array of all enemies with pulsing animation
+let powerUps = [];             // Array of power-ups with glow effects and sounds
+let score = 0;                 // Player's current score
+let playerXP = 0;              // Experience points for leveling
+let playerLevel = 1;           // Current player level
+let playerHealth = 60;         // Current health (can take damage!)
+let maxHealth = 60;            // Maximum possible health
+let currentWeapon = "basic";   // Current weapon type with unique sounds
+let difficultyTimer = 0;       // Tracks time to increase difficulty
+let lastDirection = {x: 0, y: -1}; // Direction player is facing for shooting
 
-// TODO: Add new variables for advanced features
-let bosses = [];              // Array to hold boss enemies
-let gameMode = "survival";    // Current game mode
-let upgradePoints = 0;        // Points for buying upgrades
-let invulnerabilityTime = 0;  // Frames of invulnerability after damage
-let highScore = 0;            // Best score achieved
+// Visual effect variables from Day 4-5
+let explosionParticles = [];   // Array of explosion particles
+let screenShake = 0;           // Screen shake intensity
+let animationFrame = 0;        // Animation counter
 
+// Audio variables from Day 5
+let soundEnabled = true;       // Master sound toggle
+let musicVolume = 0.3;         // Background music volume
+let sfxVolume = 0.7;           // Sound effects volume
+
+// STEP 2: NEW variables for advanced game mechanics!
+// TODO: Add variables for boss system
+// HINT: let bosses = []; (array to hold boss enemies)
+// HINT: let bossSpawnTimer = 0; (tracks when to spawn next boss)
+
+// TODO: Add variables for game modes
+// HINT: let gameMode = "survival"; (current game mode)
+// HINT: let waveNumber = 1; (current wave in wave mode)
+// HINT: let enemiesInWave = 0; (enemies left in current wave)
+
+// TODO: Add variables for upgrade system  
+// HINT: let upgradePoints = 0; (currency for buying upgrades)
+// HINT: let playerStats = { armor: 0, critChance: 0.1, critDamage: 2.0 }; (player stats)
+
+// TODO: Add variables for advanced combat
+// HINT: let invulnerabilityTime = 0; (frames of invulnerability after damage)
+// HINT: let comboMultiplier = 1; (score multiplier for consecutive kills)
+// HINT: let comboTimer = 0; (time left on current combo)
+
+// TODO: Add variables for persistence
+// HINT: let highScore = 0; (best score achieved)
+// HINT: let totalPlayTime = 0; (lifetime play time)
+
+// STEP 3: Enhanced setup() with advanced game initialization
 function setup() {
   createCanvas(800, 600);
   
-  // Day 5's working player setup (includes all audio and visual enhancements)
+  // TODO: Initialize audio system (copy from Day 5)
+  // HINT: Create oscillators for all sound effects
+  // HINT: shootSound = new p5.Oscillator('triangle');
+  // HINT: explosionSound = new p5.Oscillator('sawtooth');
+  // HINT: powerUpSound = new p5.Oscillator('sine');
+  // HINT: damageSound = new p5.Oscillator('square');
+  // HINT: backgroundMusic = new p5.Oscillator('sine');
+  // HINT: Don't forget to set frequencies and start them!
+  
+  // Your working player setup from Day 5 (with all enhancements)
   player = {
-    x: width / 2,
-    y: height / 2,
-    size: 18, // Consistent with Days 3-5
-    speed: 4
+    x: width / 2,     // Start in center horizontally
+    y: height / 2,    // Start in center vertically
+    size: 18,         // Size for collision detection
+    speed: 4,         // Movement speed
+    rotation: 0,      // Sprite rotation from Day 4
+    // TODO: Add advanced player stats
+    // HINT: armor: 0, (reduces incoming damage)
+    // HINT: critChance: 0.1, (10% chance for critical hits)
+    // HINT: critDamage: 2.0, (critical hits do 2x damage)
   };
   
-  // TODO: Load high score from localStorage
-  // HINT: Use localStorage.getItem() to save between sessions
+  // TODO: Load saved data from localStorage
+  // HINT: let savedHighScore = localStorage.getItem('miniSurvivorsHighScore');
+  // HINT: if (savedHighScore) highScore = parseInt(savedHighScore);
+  // 💡 TRY THIS: This saves the high score between play sessions!
   
+  // TODO: Initialize game mode data
+  // HINT: if (gameMode === "waves") {
+  // HINT:   setupWaveMode();
+  // HINT: } else if (gameMode === "bossRush") {
+  // HINT:   setupBossRushMode();
+  // HINT: }
 }
 
 function draw() {

@@ -1,145 +1,166 @@
-// 🎮 Day 3: Complete Game - Mini Survivors
-// Today we'll create a full-featured survival game!
-// Starting with working Day 2 code, then adding advanced features
+// 🎮 Day 3: Complete Game - Mini Survivors  
+// Today we'll add advanced features to our working Day 2 combat game!
+// We start with ALL the working Day 2 code, then add new features
 
 // ====================================
 // LESSON GOALS:
-// - Add multiple weapon types with different behaviors
-// - Create an XP and leveling system
-// - Add power-ups that randomly appear
-// - Implement a health system for the player
-// - Add increasing difficulty over time
+// - Learn about different weapon systems (spread shots, rapid fire)
+// - Add an XP and leveling system to make progression rewarding
+// - Create power-ups that randomly appear and help the player
+// - Give the player health so they can take multiple hits
+// - Make the game get progressively harder over time
+// - Build a complete, polished survival game!
 // ====================================
 
-// Starting with Day 2's working code
-let player;
-let gameState = "start";
-let bullets = [];
-let enemies = [];
-let score = 0;
+// STEP 1: Variables from Day 2 + new ones for Day 3
+// Think of these like labeled boxes that hold important data
 
-// TODO: Add new variables for advanced features
-let playerXP = 0;           // Experience points for leveling up
-let playerLevel = 1;        // Current player level
-let playerHealth = 60;      // Current health (can take damage now!)
-let maxHealth = 60;         // Maximum possible health
-let currentWeapon = "basic"; // Current weapon type
-let powerUps = [];          // Array to hold power-ups
-let difficultyTimer = 0;    // Tracks time to increase difficulty
-let lastDirection = {x: 0, y: -1}; // Direction player is facing (for shooting)
+// From Day 2 - all working variables from completed Day 2!
+let player;                    // Will hold all player information
+let gameState = "start";       // Tracks which screen we're showing
+let bullets = [];              // Will hold all bullets currently on screen
+let enemies = [];              // Will hold all enemies currently on screen  
+let score = 0;                 // Player's score
 
+// NEW for Day 3 - advanced game features!
+// TODO: Create variables for the new systems
+// HINT: let playerXP = 0;           (experience points for leveling up)
+// HINT: let playerLevel = 1;        (current player level - starts at 1)
+// HINT: let playerHealth = 60;      (current health - can take damage now!)
+// HINT: let maxHealth = 60;         (maximum possible health)
+// HINT: let currentWeapon = "basic"; (current weapon type)
+// HINT: let powerUps = [];          (array to hold power-ups)
+// HINT: let difficultyTimer = 0;    (tracks time to increase difficulty)
+// HINT: let lastDirection = {x: 0, y: -1}; (direction player is facing for shooting)
+let playerXP;           // Experience points for leveling up
+let playerLevel;        // Current player level
+let playerHealth;       // Current health (can take damage now!)
+let maxHealth;          // Maximum possible health
+let currentWeapon;      // Current weapon type
+let powerUps;           // Array to hold power-ups
+let difficultyTimer;    // Tracks time to increase difficulty
+let lastDirection;      // Direction player is facing (for shooting)
+
+// STEP 2: The setup() function runs ONCE when the game starts
 function setup() {
+  // Create the game window - same as Day 1 and 2
   createCanvas(800, 600);
   
-  // Day 2's working player setup (smaller for more challenge)
+  // STEP 3: Create our player character (same as Day 2)
+  // This is like a character sheet with all the player's stats
   player = {
-    x: width / 2,
-    y: height / 2,
-    size: 18,
-    speed: 4
+    x: width / 2,     // Start in center horizontally
+    y: height / 2,    // Start in center vertically
+    size: 20,         // Same size as Day 2 
+    speed: 4          // How fast they move
   };
 }
 
+// STEP 4: The draw() function runs 60 TIMES PER SECOND!
+// This is what makes the game move and look alive
 function draw() {
+  // Paint the background color every frame (like erasing a whiteboard)
+  // These numbers are Red, Green, Blue (0-255). Try (0, 0, 0) for black!
+  // 🎨 Find more colors at: https://colorpicker.me or just Google "RGB color picker"
   background(20, 20, 40);
   
+  // Check what screen we should show
   if (gameState === "start") {
-    // Day 2's working start screen
+    // STEP 5: Show the start screen (same as Day 2, but with new instructions!)
+    
+    // TODO: Set text color to white
+    // HINT: Use fill(255)
     fill(255);
+    
+    // TODO: Make text big for the title
+    // HINT: Use textSize(48)
     textSize(48);
+    
+    // TODO: Center the text on screen
+    // HINT: Use textAlign(CENTER, CENTER)
     textAlign(CENTER, CENTER);
+    
+    // TODO: Draw the title text
+    // HINT: Use text("MINI SURVIVORS", width/2, height/2 - 80)
+    // 💡 TRY THIS: Change "MINI SURVIVORS" to your own game title!
     text("MINI SURVIVORS", width/2, height/2 - 80);
     
+    // TODO: Add start instructions
+    // HINT: textSize(24) then text("Press any key to start", width/2, height/2 + 20)
     textSize(24);
     text("Press any key to start", width/2, height/2 + 20);
     
+    // TODO: Add game instructions
+    // HINT: textSize(16) for smaller text
     textSize(16);
     text("Use WASD or Arrow Keys to move", width/2, height/2 + 60);
     text("Collect XP to level up and get stronger!", width/2, height/2 + 90);
     text("Press 1, 2, 3 to switch weapons", width/2, height/2 + 120);
     
   } else if (gameState === "playing") {
-    // Day 2's working player movement + direction tracking
-    if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) { // A key
-      player.x -= player.speed;
-      lastDirection = {x: -1, y: 0}; // Remember we're moving left
+    // STEP 6: Handle player movement (same as Day 2, but now we track direction!)
+    // Check if keys are being pressed RIGHT NOW
+    
+    // From Day 2 - Handle player movement (working code)
+    if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) { // Left arrow OR 'A' key
+      player.x -= player.speed;                   // Move left
     }
-    if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) { // D key
-      player.x += player.speed;
-      lastDirection = {x: 1, y: 0}; // Remember we're moving right
+    if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) { // Right arrow OR 'D' key
+      player.x += player.speed;                    // Move right
     }
-    if (keyIsDown(UP_ARROW) || keyIsDown(87)) { // W key
-      player.y -= player.speed;
-      lastDirection = {x: 0, y: -1}; // Remember we're moving up
+    if (keyIsDown(UP_ARROW) || keyIsDown(87)) {    // Up arrow OR 'W' key
+      player.y -= player.speed;                    // Move up
     }
-    if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) { // S key
-      player.y += player.speed;
-      lastDirection = {x: 0, y: 1}; // Remember we're moving down
+    if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {  // Down arrow OR 'S' key
+      player.y += player.speed;                    // Move down
     }
     
-    // Keep player within boundaries
+    // STEP 7: NEW FOR DAY 3 - Track player movement direction for shooting
+    // TODO: Add direction tracking for multi-directional bullets
+    // HINT: Set lastDirection = {x: -1, y: 0} when moving left
+    // HINT: Set lastDirection = {x: 1, y: 0} when moving right  
+    // HINT: Set lastDirection = {x: 0, y: -1} when moving up
+    // HINT: Set lastDirection = {x: 0, y: 1} when moving down
+    
+    // Keep player within screen boundaries (same as Day 2)
     player.x = constrain(player.x, player.size/2, width - player.size/2);
     player.y = constrain(player.y, player.size/2, height - player.size/2);
     
-    // TODO: Increase difficulty over time
-    // HINT: Increment difficultyTimer each frame to track game time
-    
-    // TODO: Enhanced shooting system with weapon types
-    // CHALLENGE: Create different shooting patterns based on currentWeapon:
-    // - "basic": Single bullet straight up
-    // - "spread": Three bullets in a fan pattern
-    // - "rapid": Faster shooting rate
-    // HINT: Use if/else statements with currentWeapon variable
-    
-    // TODO: Enhanced shooting system with directional shooting
-    // HINT: Bullets should travel in the direction the player last moved
+    // From Day 2 - Working automatic shooting system
     if (frameCount % 10 === 0) { // Shoot every 10 frames
       bullets.push({
         x: player.x,
         y: player.y,
-        vx: lastDirection.x * 7,  // TODO: Use lastDirection for bullet velocity
-        vy: lastDirection.y * 7,  // TODO: Multiply by bullet speed (7)
-        type: "basic" // TODO: Set bullet type based on weapon
+        speed: 7
       });
     }
     
-    // Day 2's working bullet system (enhance this)
+    // From Day 2 - Update and draw all bullets  
     for (let i = bullets.length - 1; i >= 0; i--) {
-      let bullet = bullets[i];
-      bullet.x += bullet.vx; // TODO: Add this line for horizontal movement
-      bullet.y += bullet.vy; // Use vy instead of speed
+      bullets[i].y -= bullets[i].speed;
       
-      // TODO: Draw different bullet colors based on type
-      fill(255, 255, 0); // Yellow for basic
+      // Draw bullet
+      fill(255, 255, 0); // Yellow
       noStroke();
-      ellipse(bullet.x, bullet.y, 6);
+      ellipse(bullets[i].x, bullets[i].y, 6);
       
       // Remove bullets that go off screen
-      if (bullet.y < 0 || bullet.x < 0 || bullet.x > width) {
+      if (bullets[i].y < 0) {
         bullets.splice(i, 1);
       }
     }
     
-    // TODO: Enhanced enemy spawning from all directions
-    // HINT: Enemies should spawn from all edges of the screen, not just the top
-    // HINT: Make spawn rate increase with player level for balanced progression
-    if (random(100) < (1.2 + (playerLevel - 1) * 0.4)) { // Scales with level!
-      let enemy = {
-        size: random(14, 26),
-        speed: random(0.8, 1.8 + (playerLevel * 0.2)), // TODO: Scale with player level
-        health: 1
-      };
-      
-      // TODO: Spawn enemies from random screen edges
-      // HINT: Choose random side ('top', 'bottom', 'left', 'right')
-      // HINT: Set x,y position based on which side was chosen
-      enemy.x = random(20, width - 20); // TODO: Replace this with edge-based positioning
-      enemy.y = 0; // TODO: Replace this with edge-based positioning
-      
-      enemies.push(enemy);
+    // From Day 2 - Spawn enemies randomly
+    if (random(100) < 1.8) { // 1.8% chance each frame
+      enemies.push({
+        x: random(20, width - 20),
+        y: 0,
+        size: 20,
+        speed: random(1.5, 3.5)
+      });
     }
     
-    // Day 2's working enemy system (enhance this)
+    // From Day 2 - Update and draw all enemies
     for (let i = enemies.length - 1; i >= 0; i--) {
       let enemy = enemies[i];
       
@@ -158,22 +179,174 @@ function draw() {
       noStroke();
       ellipse(enemy.x, enemy.y, enemy.size);
       
-      // TODO: Modify this - instead of game over, reduce health
+      // Check if enemy hits player
       if (distance < (player.size + enemy.size) / 2) {
-        // TODO: Reduce playerHealth by 25 (significant damage!)
-        // TODO: Remove the enemy
-        // TODO: Check if playerHealth <= 0 for game over
-        gameState = "gameOver"; // Replace this with health system
+        gameState = "gameOver";
       }
     }
     
-    // TODO: Add power-up spawning
-    // HINT: Very low random chance to spawn power-ups
-    // Create power-up objects with type ("health", "weapon", "speed") and position
+    // From Day 2 - Check for bullet-enemy collisions
+    for (let i = bullets.length - 1; i >= 0; i--) {
+      for (let j = enemies.length - 1; j >= 0; j--) {
+        let bulletDist = distance(bullets[i].x, bullets[i].y, enemies[j].x, enemies[j].y);
+        
+        if (bulletDist < (6 + enemies[j].size) / 2) {
+          // Hit! Remove both bullet and enemy
+          bullets.splice(i, 1);
+          enemies.splice(j, 1);
+          score += 10;
+          break; // Exit inner loop since bullet is gone
+        }
+      }
+    }
     
-    // TODO: Handle power-up collection
-    // HINT: Loop through powerUps array, check distance to player
-    // If collected, call applyPowerUp(type) and remove from array
+    // STEP 7: NEW FOR DAY 3 - Track difficulty timer
+    // TODO: Track how long the game has been running
+    // HINT: difficultyTimer++; (add 1 each frame to count time)
+    difficultyTimer++;
+    
+    
+    // STEP 8: NEW FOR DAY 3 - Enhanced shooting system with multiple weapon types
+    // TODO: Replace Day 2's simple shooting with weapon-based system
+    // TODO: Create different shooting patterns based on currentWeapon
+    // HINT: Use if/else statements to check currentWeapon
+    // HINT: "basic" = single bullet, "spread" = 3 bullets, "rapid" = faster rate
+    // HINT: For spread: create 3 bullets with slightly different directions
+    // HINT: For rapid: use frameCount % 5 instead of % 10
+    // TODO: Make bullets shoot in direction player is moving (lastDirection)
+    // HINT: Use lastDirection.x and lastDirection.y for bullet velocity
+    
+    // STEP 9: Update and draw all bullets (enhanced from Day 2)
+    // TODO: Make bullets move in any direction and draw different colors
+    // HINT: Same loop structure as Day 2, but now bullets can move horizontally too
+    for (let i = bullets.length - 1; i >= 0; i--) {
+      let bullet = bullets[i];
+      
+      // TODO: Move bullet using its velocity
+      // HINT: bullet.x += bullet.vx; (move horizontally)
+      // HINT: bullet.y += bullet.vy; (move vertically)
+      bullet.x += bullet.vx;
+      bullet.y += bullet.vy;
+      
+      // TODO: Draw different bullet colors based on type
+      // HINT: if (bullet.type === "basic") fill(255, 255, 0); (yellow)
+      // HINT: if (bullet.type === "spread") fill(255, 150, 0); (orange)
+      // HINT: if (bullet.type === "rapid") fill(0, 255, 255); (cyan)
+      // 💡 TRY THIS: Try different colors for different bullet types!
+      if (bullet.type === "basic") {
+        fill(255, 255, 0); // Yellow
+        ellipse(bullet.x, bullet.y, 6);
+      } else if (bullet.type === "spread") {
+        fill(255, 150, 0); // Orange
+        ellipse(bullet.x, bullet.y, 5);
+      } else if (bullet.type === "rapid") {
+        fill(0, 255, 255); // Cyan
+        ellipse(bullet.x, bullet.y, 4);
+      }
+      
+      // TODO: Remove bullets that go off screen in ANY direction
+      // HINT: Check if bullet.y < 0 OR bullet.y > height OR bullet.x < 0 OR bullet.x > width
+      if (bullet.y < 0 || bullet.x < 0 || bullet.x > width || bullet.y > height) {
+        bullets.splice(i, 1);
+      }
+    }
+    
+    // STEP 10: Enhanced enemy spawning from all directions (NEW for Day 3!)
+    // TODO: Make enemies spawn from all screen edges, not just the top
+    // TODO: Make spawn rate increase with player level for balanced progression
+    // HINT: Use random() and check if it's less than a spawn chance
+    // HINT: Spawn chance should increase with playerLevel: 1.2 + (playerLevel - 1) * 0.4
+    if (random(100) < (1.2 + (playerLevel - 1) * 0.4)) { // Scales with level!
+      let enemy = {
+        size: random(14, 26),                        // Random size variety
+        speed: random(0.8, 1.8 + (playerLevel * 0.2)), // Speed increases with level
+        health: 1
+      };
+      
+      // TODO: Spawn enemies from random screen edges
+      // HINT: Choose random side using random(['top', 'bottom', 'left', 'right'])
+      // HINT: If 'top': x = random(width), y = -enemy.size
+      // HINT: If 'bottom': x = random(width), y = height + enemy.size
+      // HINT: If 'left': x = -enemy.size, y = random(height)
+      // HINT: If 'right': x = width + enemy.size, y = random(height)
+      // 💡 TRY THIS: This makes enemies come from all directions - much more challenging!
+      let side = random(['top', 'bottom', 'left', 'right']);
+      if (side === 'top') {
+        enemy.x = random(enemy.size, width - enemy.size);
+        enemy.y = -enemy.size;
+      } else if (side === 'bottom') {
+        enemy.x = random(enemy.size, width - enemy.size);
+        enemy.y = height + enemy.size;
+      } else if (side === 'left') {
+        enemy.x = -enemy.size;
+        enemy.y = random(enemy.size, height - enemy.size);
+      } else { // right
+        enemy.x = width + enemy.size;
+        enemy.y = random(enemy.size, height - enemy.size);
+      }
+      
+      enemies.push(enemy);
+    }
+    
+    // STEP 11: NEW FOR DAY 3 - Enhanced enemy system (replace Day 2's instant death)
+    // TODO: Add health system - player can take multiple hits now!
+    // TODO: Reduce playerHealth by 25 (significant damage!)
+    // HINT: playerHealth -= 25;
+    // TODO: Remove the enemy that hit the player
+    // HINT: enemies.splice(i, 1);
+    // TODO: Check if playerHealth <= 0 for game over
+    // HINT: if (playerHealth <= 0) { gameState = "gameOver"; }
+    // 💡 TRY THIS: Change the damage amount - try 15 for easier, 35 for harder!
+    
+    // STEP 11: Power-up spawning system (NEW for Day 3!)
+    // TODO: Spawn power-ups very rarely
+    // HINT: if (random(1000) < 1) {  (0.1% chance each frame - very rare!)
+    // HINT:   powerUps.push({
+    // HINT:     x: random(30, width - 30),     (random position)
+    // HINT:     y: random(30, height - 30),
+    // HINT:     type: random(["health", "weapon", "speed"]),  (random type)
+    // HINT:     size: 15
+    // HINT:   });
+    // HINT: }
+    // 💡 TRY THIS: Change the spawn rate - try random(500) < 1 for more frequent!
+    if (random(1000) < 1) {
+      powerUps.push({
+        x: random(30, width - 30),
+        y: random(30, height - 30),
+        type: random(["health", "weapon", "speed"]),
+        size: 15
+      });
+    }
+    
+    
+    // STEP 12: Power-up collection and drawing
+    // TODO: Draw power-ups and check if player collects them
+    // HINT: Loop through powerUps array like bullets and enemies
+    // HINT: Draw different colors: health = green, weapon = yellow, speed = blue
+    // HINT: Check distance to player, if close enough call applyPowerUp(type)
+    // HINT: Don't forget to remove collected power-ups from the array!
+    for (let i = powerUps.length - 1; i >= 0; i--) {
+      let powerUp = powerUps[i];
+      
+      // Draw power-up with different colors
+      if (powerUp.type === "health") {
+        fill(0, 255, 0); // Green
+      } else if (powerUp.type === "weapon") {
+        fill(255, 255, 0); // Yellow  
+      } else if (powerUp.type === "speed") {
+        fill(0, 0, 255); // Blue
+      }
+      
+      noStroke();
+      ellipse(powerUp.x, powerUp.y, powerUp.size);
+      
+      // Check if player collects power-up
+      let distance = sqrt((player.x - powerUp.x) ** 2 + (player.y - powerUp.y) ** 2);
+      if (distance < (player.size + powerUp.size) / 2) {
+        applyPowerUp(powerUp.type);
+        powerUps.splice(i, 1);
+      }
+    }
     
     // Day 2's working collision detection (enhance this)
     for (let i = bullets.length - 1; i >= 0; i--) {
@@ -181,14 +354,22 @@ function draw() {
         let bulletDist = sqrt((bullets[i].x - enemies[j].x) ** 2 + (bullets[i].y - enemies[j].y) ** 2);
         
         if (bulletDist < (6 + enemies[j].size) / 2) {
-          // Hit! Remove both bullet and enemy
+          // From Day 2 - Hit! Remove both bullet and enemy  
           bullets.splice(i, 1);
           enemies.splice(j, 1);
           score += 10;
           
-          // TODO: Add XP gain here (try playerXP += 8)
-          // TODO: Check for level up (XP >= playerLevel * 75 for balanced progression)
-          // TODO: On level up: increase playerLevel, maxHealth by 15, partial heal
+          // STEP 12: NEW FOR DAY 3 - Add XP and leveling system
+          // TODO: Add XP and leveling system (NEW for Day 3!)
+          // HINT: playerXP += 8;  (gain XP for each enemy killed)
+          // 
+          // TODO: Check for level up
+          // HINT: if (playerXP >= playerLevel * 75) {  (each level needs more XP)
+          // HINT:   playerLevel++;                      (increase level)
+          // HINT:   maxHealth += 15;                     (increase max health)
+          // HINT:   playerHealth = min(playerHealth + 20, maxHealth);  (partial heal)
+          // HINT: }
+          // 💡 TRY THIS: Change the XP requirement - try playerLevel * 50 for faster leveling!
           
           break; // Exit inner loop since bullet is gone
         }
@@ -200,21 +381,28 @@ function draw() {
     noStroke();
     ellipse(player.x, player.y, player.size);
     
-    // TODO: Draw UI elements
-    // HINT: Create health bar, XP bar, and text info
-    // Health bar: red background, green foreground based on health percentage
-    // XP bar: blue background, cyan foreground based on XP progress
-    // Text: show score, level, current weapon
+    // From Day 2 - Draw the player
+    fill(0, 255, 255); // Cyan
+    noStroke();
+    ellipse(player.x, player.y, player.size);
     
-    // Day 2's basic UI (enhance this)
+    // From Day 2 - Display the score
     fill(255);
     textAlign(LEFT, TOP);
     textSize(20);
     text("Score: " + score, 10, 10);
     
+    // STEP 13: NEW FOR DAY 3 - Enhanced UI system
+    // TODO: Replace simple score display with advanced UI
+    // TODO: Create health bar, XP bar, and enhanced text info
+    // HINT: Health bar: red background rect, then green rect scaled by health percentage
+    // HINT: XP bar: blue background rect, then cyan rect scaled by XP progress
+    // HINT: Text: show score, level, current weapon, and controls
+    // HINT: You might want to create a drawUI() function to organize this!
+    // 💡 TRY THIS: Try different bar colors and positions!
+    
   } else if (gameState === "gameOver") {
-    // TODO: Enhanced game over screen
-    // Show "GAME OVER", final score, level reached, and restart instructions
+    // From Day 2 - Show game over screen
     fill(255, 100, 100);
     textSize(48);
     textAlign(CENTER, CENTER);
@@ -225,56 +413,84 @@ function draw() {
     text("Final Score: " + score, width/2, height/2);
     
     textSize(18);
-    text("Press any key to restart", width/2, height/2 + 50);
+    text("Press SPACE to restart", width/2, height/2 + 50);
+    
+    // STEP 14: NEW FOR DAY 3 - Enhanced game over screen
+    // TODO: Add level reached information
+    // HINT: text("Level Reached: " + playerLevel, width/2, height/2 + 25);
   }
 }
 
+// STEP 15: Handle when someone presses a key ONCE (enhanced from Day 2)
 function keyPressed() {
-  // Day 2's working key handling
+  // Start the game (same as Day 2)
   if (gameState === "start") {
     gameState = "playing";
   } else if (gameState === "playing") {
-    // TODO: Add weapon switching
-    // HINT: Use number keys 1, 2, 3 to switch weapons
-    // if (key === '1') currentWeapon = "basic";
-    // if (key === '2') currentWeapon = "spread";
-    // if (key === '3') currentWeapon = "rapid";
+    // STEP 16: NEW FOR DAY 3 - Weapon switching system
+    // TODO: Add weapon switching with number keys
+    // HINT: if (key === '1') currentWeapon = "basic";
+    // HINT: if (key === '2') currentWeapon = "spread";
+    // HINT: if (key === '3') currentWeapon = "rapid";
+    // 💡 TRY THIS: Add more weapons like "orbital" or "laser"!
     
-  } else if (gameState === "gameOver") {
-    // TODO: Reset all game variables for restart
-    // HINT: Reset all the new variables we added (health, XP, level, weapon)
-    // Plus clear all arrays and reset player position
-    
-    // Day 2's working reset code (enhance this)
+  } else if (gameState === "gameOver" && key === ' ') {
+    // From Day 2 - Reset the game when player presses SPACE
     bullets = [];
     enemies = [];
     score = 0;
     player.x = width / 2;
     player.y = height / 2;
     gameState = "playing";
+    
+    // STEP 17: NEW FOR DAY 3 - Reset additional Day 3 variables
+    // TODO: Reset all the new Day 3 variables
+    // HINT: Reset health, XP, level, weapon, powerUps, etc.
+    // HINT: powerUps = []; playerXP = 0; playerLevel = 1; etc.
   }
 }
 
-// TODO: Create power-up effects function
+// STEP 18: Create power-up effects function (NEW for Day 3!)
 function applyPowerUp(type) {
-  // CHALLENGE: Create different power-up types:
-  // - "health": Restore health (use min() to not exceed maxHealth)
-  // - "weapon": Cycle through weapon types  
-  // - "speed": Increase player.speed slightly
+  // TODO: Create different power-up effects
+  // HINT: if (type === "health") {   
+  // HINT:   playerHealth = min(playerHealth + 20, maxHealth);  (restore health but don't exceed max)
+  // HINT: } else if (type === "weapon") {
+  // HINT:   // Cycle through weapon types: basic -> spread -> rapid -> basic
+  // HINT: } else if (type === "speed") {
+  // HINT:   player.speed += 0.5;  (permanent speed increase!)
+  // HINT: }
+  // 💡 TRY THIS: Add new power-up types like "damage" or "shield"!
 }
 
-// TODO: Create a drawUI function to organize your interface code
+// STEP 19: Create a drawUI function to organize your interface code
 function drawUI() {
-  // HINT: Move all your UI drawing code here
-  // Health bar, XP bar, text info, etc.
+  // TODO: Move all your UI drawing code here for better organization
+  // HINT: Health bar: fill(255, 0, 0); rect(); then fill(0, 255, 0); rect();
+  // HINT: XP bar: similar structure but with blue/cyan colors
+  // HINT: Text info: score, level, weapon, controls
+  // 💡 TRY THIS: Try different bar styles and layouts!
 }
 
-// CHALLENGES TO TRY:
-// 1. Add a boss enemy that appears every few levels
-// 2. Create weapon upgrade system with permanent improvements
-// 3. Add particle effects for explosions and power-ups
-// 4. Save high scores to local storage
-// 5. Add different enemy types with unique behaviors
+// HELPER FUNCTION from Day 2: Calculate distance between two points
+function distance(x1, y1, x2, y2) {
+  return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+}
 
-// NEXT LESSON PREVIEW:
-// In Bonus Day 4, we'll add amazing visual effects and animations!
+// 🎯 EASY MODIFICATIONS TO TRY:
+// 1. Change playerHealth damage from 25 to 15 for easier gameplay
+// 2. Change XP requirement from playerLevel * 75 to * 50 for faster leveling
+// 3. Change power-up spawn rate from random(1000) < 1 to < 2 for more power-ups
+// 4. Change weapon fire rates - try frameCount % 5 for rapid fire
+// 5. Add new weapon types in the weapon switching section
+// 6. Change enemy spawn rates for more or less challenge
+
+// 🚀 HARDER CHALLENGES (if you finish early):
+// 1. Add a boss enemy that appears every 5 levels
+// 2. Create different enemy types with unique behaviors
+// 3. Add screen shake when taking damage
+// 4. Make enemies drop XP orbs instead of auto-gaining XP
+// 5. Add weapon upgrade system with permanent improvements
+
+// NEXT TIME:
+// Bonus lessons with visual effects, sound, and advanced mechanics!
