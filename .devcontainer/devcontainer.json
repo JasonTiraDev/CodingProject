@@ -1,0 +1,39 @@
+{
+  "name": "Mini Survivors Game Development",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ritwickdey.liveserver",
+        "ms-vscode.live-server",
+        "dbaeumer.vscode-eslint"
+      ],
+      "settings": {
+        "liveServer.settings.port": 5500,
+        "liveServer.settings.donotShowInfoMsg": true,
+        "liveServer.settings.donotVerifyTags": true
+      }
+    }
+  },
+
+  "forwardPorts": [5500, 8000],
+  "portsAttributes": {
+    "5500": {
+      "label": "Live Server",
+      "onAutoForward": "openBrowser"
+    },
+    "8000": {
+      "label": "Python Server",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "postCreateCommand": "echo '🎮 Mini Survivors ready! Open index.html and use Live Server or Simple Browser to run the game.'",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "latest"
+    }
+  }
+}
