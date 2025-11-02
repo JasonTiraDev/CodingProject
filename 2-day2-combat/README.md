@@ -3,39 +3,34 @@
 ## 📚 What You'll Learn Today (building on Day 1!)
 - **Arrays** - Lists that hold multiple bullets and enemies at once
 - **Automatic actions** - Making bullets shoot every few frames using `frameCount`
-- **Object creation** - Spawning enemies with random positions and speeds
-- **Movement math** - Making enemies chase the player using direction calculations
 - **Collision detection** - Using distance math to detect when things touch
-- **Game states** - Adding a proper game over screen and restart system
+- **Game states** - Adding a game over screen and restart system
 
 ## 🎯 What You'll Build
 By the end of today, you'll have a **real survival game**:
-- 🟡 **Auto-shooting bullets** that fire every few frames
-- 🔴 **Smart enemies** that spawn randomly and chase you around
+- 🟡 **Auto-shooting bullets** that fire upward automatically
+- 🔴 **Enemies** that spawn at the top and chase you around
 - 💥 **Collision system** - bullets destroy enemies on contact
-- 📊 **Live score counter** that increases as you survive
-- ⚰️ **Game over screen** when enemies catch you (with your final score!)
-- 🔄 **Restart system** - press SPACE to try again and beat your high score
-- 🎮 **Escalating challenge** - the longer you survive, the more intense it gets!
+- 📊 **Live score counter** that tracks your kills
+- ⚰️ **Game over screen** when enemies catch you
+- 🔄 **Restart system** - press SPACE to try again!
 
 ## 🎮 How to Get Started
 
 ### For Students:
 1. **You must finish Day 1 first!** - Day 2 builds on Day 1's code
-2. **You'll be typing the actual code again!** - The file has TODOs with detailed HINTs
-3. Open the `starter.js` file - this starts with Day 1's working code
-4. **The HINTs show you exactly what to type** - but you still have to type it!
-5. Follow the STEP-BY-STEP comments and complete each TODO
-6. **Test after each step!** Run your code to see what changes
-7. Try the "TRY THIS" suggestions - change numbers and see what happens!
+2. Open the `starter.js` file - it has all the TODOs you need to complete
+3. **Follow the HINTS** - They show you exactly what to type (or copy/paste!)
+4. **Test after completing a few steps** - Don't wait until the end!
+5. **It's OKAY to copy/paste from the hints** - The goal is to see it work and understand what's happening
+6. Try the "TRY THIS" suggestions to make the game your own!
 
 ### Quick Start:
-1. **Make sure your Day 1 code is working first** - you need player movement!
-2. Go to [p5.js Web Editor](https://editor.p5js.org/)
-3. Copy your code from Day 2 `starter.js` into the editor
-4. Complete the TODOs one by one (there are 16 steps!)
-5. **Test after each major step** - don't wait until the end!
-6. Click the Play button ▶️ to test your game!
+1. Go to [p5.js Web Editor](https://editor.p5js.org/)
+2. Copy the Day 2 `starter.js` code into the editor
+3. Complete the TODOs using the hints (type or copy/paste - both are fine!)
+4. Click Play ▶️ after every few steps to see your progress
+5. Experiment with the numbers once it's working!
 
 **Game Controls:**
 - **WASD or Arrow Keys**: Move your player
@@ -45,22 +40,28 @@ By the end of today, you'll have a **real survival game**:
 
 ### For Teachers
 
-**Before Starting:**
-- **Verify Day 1 completion** - Students need working player movement
-- **Expect 1+ hours** - This is significantly more complex than Day 1
-- **Arrays will be confusing** - First time working with lists of objects
+**Realistic Expectations (1 hour session):**
+- **Goal: Get them hooked, not make them experts** - If they leave excited, you win!
+- **Copy/paste is encouraged** - They'll learn by seeing it work and tweaking values
+- **Focus on the "wow" moments** - First bullet, first enemy destroyed, first game over
+- **8-9 students is perfect** - You can help everyone individually
 
 **During the Lesson:**
-- **Students type all combat code** - `starter.js` has 16 detailed steps
-- **Encourage testing early and often** - Each step should be testable
-- **Use `completed.js` for demos** - Shows working examples of each feature
-- **"TRY THIS" sections** - Built-in challenges for fast finishers
+- **5-10 min**: Recap Day 1, show the goal (play `completed.js`)
+- **35-40 min**: Students work through TODOs with your help
+- **10-15 min**: Customization time (colors, speeds, game title)
+- **5 min**: Share games with each other
+
+**Copy/Paste Strategy:**
+- Tell them: "Programming is about understanding, not memorizing. Copy the hint if you want!"
+- After copying, have them change ONE number and see what happens
+- This builds confidence and reduces frustration
 
 **Common Issues:**
-- **"My bullets aren't showing"** - Check the bullet drawing code in Step 8
-- **"Enemies aren't moving"** - Verify the direction math in Step 10
-- **"Nothing happens when bullets hit"** - Debug the collision detection in Step 11
-- **"Game won't restart"** - Make sure they're pressing SPACE, not any key
+- **"My bullets aren't showing"** - They probably missed the drawing code (Step 8)
+- **"Enemies aren't moving"** - Check the direction math (Step 10)
+- **"Nothing happens when bullets hit"** - Missing collision detection (Step 11)
+- **"Can't restart"** - Make sure they press SPACE, not just any key
 
 ## 🔑 What They're Actually Learning (Even If They Don't Know It)
 
@@ -99,11 +100,12 @@ By the end of today, you'll have a **real survival game**:
 
 ## ➡️ What's Next (Day 3)
 
-Once you've mastered Day 2's combat system, Day 3 will add:
-- **Multiple weapon types** - spread shots that fire in multiple directions
-- **Power-ups** - collectible items that boost your abilities
-- **Experience system** - gain XP and level up your character
-- **Dynamic difficulty** - enemies get stronger as you survive longer
-- **Visual polish** - particle effects and screen shake
+Once Day 2 is working, Day 3 will add:
+- **Player health system** - take multiple hits before game over!
+- **Health pack power-ups** - collectible items that heal you
+- **Polish & customization** - make the game uniquely YOURS!
 
-**For now, focus on making Day 2 work perfectly - it's the foundation for everything else!**
+**Then for extended learning at home:**
+- **Bonus Days 4-6** - Multiple weapons, XP systems, bosses, particle effects, and more!
+
+**For now, focus on getting Day 2's combat working - once you can shoot enemies and see your score go up, you're ready for Day 3!**

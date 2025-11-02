@@ -18,8 +18,7 @@ let player;
 // This keeps track of what screen we're showing
 // "start" = title screen, "playing" = the actual game
 // TODO: Create a variable called gameState and set it to "start"
-// HINT: Use let gameState = "start"
-let gameState = "start";
+let gameState;
 
 // STEP 2: The setup() function runs ONCE when the game starts
 function setup() {
@@ -46,11 +45,8 @@ function setup() {
 function draw() {
   // Paint the background color every frame (like erasing a whiteboard)
   // These numbers are Red, Green, Blue (0-255). Try (0, 0, 0) for black!
-  // 🎨 Find more colors at: https://colorpicker.me or just Google "RGB color picker"
-  // TODO: Add background color
-  // HINT: Use background(20, 20, 40) for dark blue background
   background(20, 20, 40);
-
+  
   // Check what screen we should show
   if (gameState === "start") {
     // STEP 5: Show the start screen with text
