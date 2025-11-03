@@ -1,10 +1,13 @@
-// 🎮 Bonus Day 6: Advanced Mechanics - Mini Survivors
-// Ultimate game with boss battles, upgrades, and multiple game modes
+// 🎮 Bonus Day 6: Boss Battles & Upgrades - Mini Survivors
+// Ultimate game with boss battles and upgrade system
+
+// NOTE: This completed version includes some extra features beyond the core lesson
+// (like multiple game modes). The starter.js focuses on the core: bosses + upgrades.
+// Feel free to explore the extra code, or stick to the main features!
 
 // All previous variables plus advanced systems
 let player;
-let gameState = "start";
-let gameMode = "classic"; // classic, endless, boss-rush
+let gameState = "start"; // start, playing, gameOver, upgradeShop
 let bullets = [];
 let enemies = [];
 let bosses = [];
@@ -69,11 +72,6 @@ let playerUpgrades = {
   fireRate: 1,
   luck: 1
 };
-let waveNumber = 1;
-let enemiesInWave = 0;
-let maxEnemiesPerWave = 10;
-let isWaveActive = false;
-let waveTimer = 0;
 let comboMultiplier = 1;
 let comboTimer = 0;
 
@@ -152,8 +150,6 @@ function draw() {
   
   if (gameState === "start") {
     drawMainMenu();
-  } else if (gameState === "modeSelect") {
-    drawModeSelection();
   } else if (gameState === "upgradeShop") {
     drawUpgradeShop();
   } else if (gameState === "playing") {
@@ -179,51 +175,14 @@ function drawMainMenu() {
   text("ULTIMATE EDITION", width/2, height/2 - 80);
   
   textSize(18);
-  text("Press SPACE to select game mode", width/2, height/2 - 20);
+  text("Press any key to start playing", width/2, height/2 - 20);
   text("Press U for upgrade shop", width/2, height/2 + 10);
-  text("Press any other key for classic mode", width/2, height/2 + 40);
-  
+
   textSize(14);
-  text("Features: Boss Battles • Upgrade System • Multiple Modes", width/2, height/2 + 80);
-  text("Advanced AI • Combo System • Wave Progression", width/2, height/2 + 100);
+  text("Features: Boss Battles • Upgrade System • High Scores", width/2, height/2 + 80);
+  text("Advanced AI • Combo System • localStorage Persistence", width/2, height/2 + 100);
   
   drawAudioVisualization(width/2 - 100, height/2 + 140, 200, 30);
-}
-
-function drawModeSelection() {
-  fill(255);
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  text("SELECT GAME MODE", width/2, height/2 - 100);
-  
-  textSize(20);
-  
-  // Classic Mode
-  if (gameMode === "classic") fill(255, 255, 0);
-  else fill(255);
-  text("1. CLASSIC MODE", width/2, height/2 - 40);
-  textSize(14);
-  text("Survive waves with boss battles", width/2, height/2 - 20);
-  
-  // Endless Mode
-  textSize(20);
-  if (gameMode === "endless") fill(255, 255, 0);
-  else fill(255);
-  text("2. ENDLESS MODE", width/2, height/2 + 20);
-  textSize(14);
-  text("Infinite survival, increasing difficulty", width/2, height/2 + 40);
-  
-  // Boss Rush Mode
-  textSize(20);
-  if (gameMode === "boss-rush") fill(255, 255, 0);
-  else fill(255);
-  text("3. BOSS RUSH MODE", width/2, height/2 + 80);
-  textSize(14);
-  text("Fight bosses back-to-back", width/2, height/2 + 100);
-  
-  textSize(16);
-  fill(200);
-  text("Use 1,2,3 to select • ENTER to confirm • ESC to go back", width/2, height/2 + 140);
 }
 
 function drawUpgradeShop() {
@@ -862,7 +821,7 @@ function drawBullets() {
     // Draw main bullet with sprite or geometric shape
     if (spritesLoaded && sprites.bullets[bullet.type]) {
       imageMode(CENTER);
-      let bulletSize = bullet.type === "basic" ? 8 : (bullet.type === "spread" ? 6 : 5);
+      let bulletSize = bullet.type === "basic" ? 8 : (bullet.type === "spread" ? 10 : 5);
       image(sprites.bullets[bullet.type], bullet.x, bullet.y, bulletSize, bulletSize);
     } else {
       // Draw cool bullet sprites using geometric shapes
@@ -885,11 +844,11 @@ function drawBulletSprite(type, x, y) {
     fill(255, 255, 200);
     ellipse(0, 0, 3);
   } else if (type === "spread") {
-    // Spread bullet - angular shard
+    // Spread bullet - angular shard (made larger for visibility)
     fill(255, 150, 0);
-    triangle(0, -3, -2, 3, 2, 3);
+    triangle(0, -5, -3, 5, 3, 5);
     fill(255, 200, 100);
-    triangle(0, -2, -1, 2, 1, 2);
+    triangle(0, -3, -2, 3, 2, 3);
   } else if (type === "rapid") {
     // Rapid bullet - small energy dot
     fill(0, 255, 255);

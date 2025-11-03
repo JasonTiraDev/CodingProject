@@ -1,15 +1,15 @@
-// 🎮 Bonus Day 6: Advanced Game Mechanics - Mini Survivors
-// Starting with your complete Day 5 audio+visual masterpiece, now let's create the ULTIMATE game!
-// Today we'll build boss battles, upgrades, and multiple game modes - this is your portfolio project!
+// 🎮 Bonus Day 6: Boss Battles & Upgrades - Mini Survivors
+// Starting with your complete Day 5 effects game, now let's add BOSSES and UPGRADES!
+// This is your portfolio project - a complete game with advanced features!
 
 // ====================================
 // LESSON GOALS:
-// - Create epic boss enemies with unique AI patterns and abilities
-// - Build a comprehensive player upgrade system with meaningful choices
-// - Add multiple game modes (Survival, Wave Mode, Boss Rush)
-// - Implement advanced combat mechanics (armor, critical hits, invulnerability frames)
-// - Create a complete, professional-quality game experience
-// - Build something worthy of your portfolio and to show friends!
+// - Create four epic boss enemies with unique AI patterns
+// - Build a player upgrade system with 6 different upgrades
+// - Implement boss health bars and professional UI
+// - Add advanced combat mechanics (armor, critical hits, invulnerability frames)
+// - Save high scores using localStorage
+// - Create a complete, professional-quality game to show off!
 // ====================================
 
 // STEP 1: All your working Day 5 variables (complete audio+visual game foundation!)
@@ -42,10 +42,8 @@ let sfxVolume = 0.7;           // Sound effects volume
 // HINT: let bosses = []; (array to hold boss enemies)
 // HINT: let bossSpawnTimer = 0; (tracks when to spawn next boss)
 
-// TODO: Add variables for game modes
-// HINT: let gameMode = "survival"; (current game mode)
-// HINT: let waveNumber = 1; (current wave in wave mode)
-// HINT: let enemiesInWave = 0; (enemies left in current wave)
+// NOTE: This is survival mode - fight enemies and bosses as long as you can!
+// The completed.js has optional game modes you can explore later
 
 // TODO: Add variables for upgrade system  
 // HINT: let upgradePoints = 0; (currency for buying upgrades)
@@ -91,50 +89,31 @@ function setup() {
   // HINT: if (savedHighScore) highScore = parseInt(savedHighScore);
   // 💡 TRY THIS: This saves the high score between play sessions!
   
-  // TODO: Initialize game mode data
-  // HINT: if (gameMode === "waves") {
-  // HINT:   setupWaveMode();
-  // HINT: } else if (gameMode === "bossRush") {
-  // HINT:   setupBossRushMode();
-  // HINT: }
+  // Survival mode - fight as long as you can!
+  // Bosses spawn automatically as you progress
 }
 
 function draw() {
   // TODO: Copy your visual and audio code from Day 5
   
   if (gameState === "start") {
-    // TODO: Enhanced start screen with game mode selection
-    // HINT: Show options for different game modes
-    // STEP 1: Display game mode options
-    // STEP 2: Show high score
-    // STEP 3: Show controls for mode selection
+    // TODO: Enhanced start screen
+    // HINT: Show game title, high score, and controls
+    // STEP 1: Display "MINI SURVIVORS - ULTIMATE EDITION"
+    // STEP 2: Show high score from localStorage
+    // STEP 3: Show controls (any key to start, U for upgrades)
     
   } else if (gameState === "playing") {
     // TODO: Copy all enhanced game logic from Day 5
     
     // TODO: Update invulnerability timer
     // HINT: Decrease invulnerabilityTime each frame
-    
-    // TODO: Handle different game modes
-    if (gameMode === "survival") {
-      // CHALLENGE: Endless gameplay with periodic boss spawns
-      // STEP 1: Normal enemy spawning
-      // STEP 2: Every few minutes, spawn a boss
-      // STEP 3: Difficulty increases over time
-      
-    } else if (gameMode === "waves") {
-      // CHALLENGE: Structured waves with breaks for upgrades
-      // STEP 1: Spawn specific number of enemies per wave
-      // STEP 2: When wave cleared, show upgrade menu
-      // STEP 3: Increase wave difficulty
-      
-    } else if (gameMode === "boss_rush") {
-      // CHALLENGE: Continuous boss battles
-      // STEP 1: Spawn boss immediately
-      // STEP 2: When defeated, spawn next boss
-      // STEP 3: Each boss is stronger than the last
-      
-    }
+
+    // TODO: Survival mode gameplay
+    // HINT: Spawn enemies continuously with increasing difficulty
+    // STEP 1: Normal enemy spawning (like Day 5)
+    // STEP 2: Every 5 levels, spawn a random boss
+    // STEP 3: Difficulty increases over time (faster spawns, tougher enemies)
     
     // TODO: Enhanced combat system with armor and crits
     // HINT: Modify damage calculations for advanced mechanics
@@ -181,8 +160,8 @@ function keyPressed() {
   // TODO: Copy key handling from Day 5
   
   if (gameState === "start") {
-    // TODO: Game mode selection keys
-    // HINT: Use 1, 2, 3 keys to select game modes
+    // Start the game or open upgrade shop
+    // Any key starts, U opens upgrades
     
   } else if (gameState === "upgrade") {
     // TODO: Upgrade selection keys
@@ -260,10 +239,10 @@ function loadHighScore() {
 // CONGRATULATIONS!
 // You've built a complete, professional-quality game!
 // You now understand advanced game development concepts including:
-// - Complex AI and behavior systems
+// - Complex AI and boss behavior systems
 // - Player progression and upgrade mechanics
-// - Multiple game modes and variety
-// - Advanced combat and damage systems
-// - Data persistence and high scores
+// - Advanced combat (armor, crits, invulnerability frames)
+// - Data persistence with localStorage
+// - Boss battles with health bars and patterns
 //
 // Keep experimenting and creating amazing games!
