@@ -23,9 +23,6 @@ let gameState = "start";       // Tracks which screen we're showing
 // HINT: let bullets = [];  (empty list to start)
 // HINT: let enemies = [];  (empty list to start)
 // HINT: let score = 0;     (number to track points)
-let bullets;  // Will hold all bullets currently on screen
-let enemies;  // Will hold all enemies currently on screen  
-let score;    // Player's score
 
 // STEP 2: The setup() function runs ONCE when the game starts
 function setup() {
@@ -83,23 +80,31 @@ function draw() {
     text("Survive as long as you can!", width/2, height/2 + 130);
     
   } else if (gameState === "playing") {
-    // STEP 6: Handle player movement (same as Day 1)
+    // STEP 6: Handle player movement (COMPLETE FROM DAY 1)
     // Check if keys are being pressed RIGHT NOW
     
+    // LEFT MOVEMENT - Working code from Day 1
     if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) { // Left arrow OR 'A' key
       player.x -= player.speed;                   // Move left
     }
+    
+    // RIGHT MOVEMENT - Working code from Day 1
     if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) { // Right arrow OR 'D' key
       player.x += player.speed;                    // Move right
     }
+    
+    // UP MOVEMENT - Working code from Day 1
     if (keyIsDown(UP_ARROW) || keyIsDown(87)) {    // Up arrow OR 'W' key
       player.y -= player.speed;                    // Move up
     }
+    
+    // DOWN MOVEMENT - Working code from Day 1
     if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {  // Down arrow OR 'S' key
       player.y += player.speed;                    // Move down
     }
     
-    // Keep player within screen boundaries (same as Day 1)
+    // BOUNDARY CHECKING - Working code from Day 1
+    // Keep player within screen boundaries
     player.x = constrain(player.x, player.size/2, width - player.size/2);
     player.y = constrain(player.y, player.size/2, height - player.size/2);
     
@@ -181,18 +186,18 @@ function draw() {
     // HINT:     
     // HINT:     if (bulletDist < (6 + enemies[j].size) / 2) {             (if they touch)
     // HINT:       bullets.splice(i, 1);                                   (remove bullet)
-    // HINT:       enemies.splice(j, 1);                                   (remove enemy)
-    // HINT:       score += 10;                                            (increase score)
-    // HINT:       break;                                                   (stop checking this bullet)
-    // HINT:     }
-    // HINT:   }
-    // HINT: }
-    // 💡 TRY THIS: Change += 10 to += 50 for higher scores!
-    
-    // STEP 12: Draw the player (same as Day 1)
+    // STEP 12: Draw the player (COMPLETE FROM DAY 1)
     fill(0, 255, 255);    // Cyan color (Red=0, Green=255, Blue=255)
     // 💡 TRY THIS: Change the color! Try fill(255, 0, 0) for red!
     noStroke();           // No outline around the circle
+    ellipse(player.x, player.y, player.size);
+    
+    // STEP 13: Display the score (NEW for Day 2!)
+    // TODO: Show the player's current score in the corner
+    // HINT: fill(255);                              (white text)
+    // HINT: textAlign(LEFT, TOP);                   (align to top-left)
+    // HINT: textSize(20);                           (good size for score)
+    // HINT: text("Score: " + score, 10, 10);        (show score in corner)
     ellipse(player.x, player.y, player.size);
     
     // STEP 13: Display the score
@@ -214,29 +219,25 @@ function draw() {
     // HINT: textSize(24);                                   (smaller text)
     // HINT: text("Final Score: " + score, width/2, height/2);  (show final score)
     // HINT: 
-    // HINT: textSize(18);                                   (even smaller)
-    // HINT: text("Press SPACE to restart", width/2, height/2 + 50);  (restart instructions)
-    // 💡 TRY THIS: Change "SPACE" to "ENTER" and key === ' ' to key === '\n' for Enter key!
-    // 💡 TRY THIS: Or use key === 'r' and "Press R to restart" for R key!
-    
-  }
-}
-
 // STEP 15: Handle when someone presses a key ONCE (not holding it down)
 function keyPressed() {
-  // Start the game (same as Day 1)
+  // Start the game (COMPLETE FROM DAY 1)
   if (gameState === "start") {
     gameState = "playing";
-  } else if (gameState === "gameOver" && key === ' ') {
-    // STEP 16: Reset the game when player presses SPACE
-    // TODO: Clear everything and start over (only when SPACE is pressed)
-    // 💡 TO CHANGE THE RESTART KEY:
-    // 💡 For Enter key: change key === ' ' to key === '\n' 
-    // 💡 For R key: change key === ' ' to key === 'r'
-    // 💡 For any letter: use key === 'a' (or whatever letter you want)
-    // 💡 Don't forget to update the text message too!
-    // HINT: Check if (gameState === "gameOver" && key === ' ') first
-    // HINT: bullets = [];           (empty the bullets array)
+  } 
+  
+  // STEP 16: Reset the game when player presses SPACE (NEW for Day 2!)
+  // TODO: Add restart functionality when game is over
+  // HINT: Check if (gameState === "gameOver" && key === ' ')
+  // HINT: Then reset: bullets = []; enemies = []; score = 0;
+  // HINT: Reset player position: player.x = width / 2; player.y = height / 2;
+  // HINT: Change gameState back to "playing"
+  // 💡 TO CHANGE THE RESTART KEY:
+  // 💡 For Enter key: change key === ' ' to key === '\n' 
+  // 💡 For R key: change key === ' ' to key === 'r'
+  // 💡 Don't forget to update the text message in the game over screen too!
+  
+}   // HINT: bullets = [];           (empty the bullets array)
     // HINT: enemies = [];           (empty the enemies array)  
     // HINT: score = 0;              (reset score back to zero)
     // HINT: player.x = width / 2;   (put player back in center)
